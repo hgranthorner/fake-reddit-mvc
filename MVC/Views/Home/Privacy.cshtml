@@ -1,0 +1,31 @@
+﻿@model MVC.Models.DataViewModel
+@{
+    ViewData["Title"] = "Privacy Policy";
+}
+<h1>@ViewData["Title"]</h1>
+<ul>
+    @foreach (var x in @Model.Datas)
+    {
+        <li>
+            <span>@x.Name</span>: <span>@x.Number</span>
+        </li>
+    }
+</ul>
+
+@using (Html.BeginForm("AddData", "Home", FormMethod.Post))
+{
+    <div>
+        <div>
+            @Html.LabelFor(model => model.NewMyData.Name)
+            @Html.TextBoxFor(model => model.NewMyData.Name)
+            @Html.ValidationMessage("Name")
+        </div>
+        <div>
+            @Html.LabelFor(model => model.NewMyData.Number)
+            @Html.TextBoxFor(model => model.NewMyData.Number, new {type = "number"})
+            @Html.ValidationMessage("Number")
+        </div>
+        <input type="submit" value="Submit"/>
+    </div>
+}
+<p>Use this page to detail your site's privacy policy.</p>

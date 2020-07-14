@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Mvc.Rendering
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <ul>
+        @foreach (var sr in Model.Subreddits)
+        {
+            <li>
+                @Html.ActionLink(
+                    sr.Name,
+                    "Index",
+                    "Subreddit",
+                    new {sr.Id})
+            </li>
+        }
+    </ul>
+    @using (Html.BeginForm("AddSubreddit", "Home", FormMethod.Post))
+    {
+        <div>
+            <div>
+                @Html.LabelFor(model => model.NewSubreddit.Name)
+                @Html.TextBoxFor(model => model.NewSubreddit.Name)
+                @Html.ValidationMessage("Name")
+            </div>
+            <input type="submit" value="Submit"/>
+        </div>
+    }
+</div>

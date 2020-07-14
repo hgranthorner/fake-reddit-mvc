@@ -1,0 +1,26 @@
+@model SubredditViewModel
+
+<h2>@Model.Subreddit.Name</h2>
+<ul>
+    @foreach (var post in Model.Posts)
+    {
+        <li>@post.Name</li>
+    }
+</ul>
+
+@using (Html.BeginForm("AddPost", "Subreddit", FormMethod.Post))
+{
+    <div>
+        <div>
+            @Html.LabelFor(model => model.NewPost.Name)
+            @Html.TextBoxFor(model => model.NewPost.Name)
+            @Html.ValidationMessage("Name")
+        </div>
+        <div>
+            @Html.LabelFor(model => model.NewPost.Text)
+            @Html.TextBoxFor(model => model.NewPost.Text)
+            @Html.ValidationMessage("Text")
+        </div>
+        <input type="submit" value="Submit"/>
+    </div>
+}
