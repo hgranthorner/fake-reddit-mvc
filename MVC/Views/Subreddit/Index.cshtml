@@ -10,19 +10,22 @@
 </ul>
 
 <h3>Add Post</h3>
-@using (Html.BeginForm("AddPost", "Subreddit", FormMethod.Post))
+@using (Html.BeginForm("AddPost", "Subreddit", FormMethod.Post,
+    new {@class = "clr-form clr-form-horizontal", @style = "display: flex; flex-direction: column;"}))
 {
-    <div>
-        <div>
-            @Html.LabelFor(model => model.NewPost.Name)
-            @Html.TextBoxFor(model => model.NewPost.Name)
-            @Html.ValidationMessage("Name")
+    <div class="clr-form-control">
+        @Html.LabelFor(model => model.NewPost.Name, new {@class = "clr-control-label", @style = "width: 3rem;"})
+        <div class="clr-control-container">
+            @Html.TextBoxFor(model => model.NewPost.Name, new {@class = "clr-input"})
         </div>
-        <div>
-            @Html.LabelFor(model => model.NewPost.Text)
-            @Html.TextBoxFor(model => model.NewPost.Text)
-            @Html.ValidationMessage("Text")
-        </div>
-        <input type="submit" value="Submit"/>
+        @Html.ValidationMessage("Name")
     </div>
+    <div class="clr-form-control">
+        @Html.LabelFor(model => model.NewPost.Text, new {@class = "clr-control-label", @style = "width: 3rem;"})
+        @Html.TextBoxFor(model => model.NewPost.Text, new {@class = "clr-input"})
+        @Html.ValidationMessage("Text")
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary"/>
 }
+
+<vc:text-box name="hello" number="2"></vc:text-box>
