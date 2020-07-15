@@ -1,0 +1,25 @@
+@model PostViewModel
+<h2>@Model.Post.Name</h2>
+<p>@Model.Post.Text</p>
+<h3>Add Comment</h3>
+@using (Html.BeginForm("AddComment", "Post", FormMethod.Post))
+{
+    <div>
+        <div >
+            @Html.LabelFor(model => model.NewComment.Text)
+            @Html.TextAreaFor(model => model.NewComment.Text)
+            @Html.ValidationMessage("NewComment")
+        </div>
+        <input type="submit" value="Submit"/>
+    </div>
+}
+
+<h3>Comments</h3>
+<ul>
+    @foreach (var comment in Model.Comments)
+    {
+        <li>
+            <p><span>@comment.Score</span> | @comment.Text</p>
+        </li>
+    }
+</ul>

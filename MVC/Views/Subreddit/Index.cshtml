@@ -1,13 +1,15 @@
 @model SubredditViewModel
 
 <h2>@Model.Subreddit.Name</h2>
+<h3>Posts</h3>
 <ul>
     @foreach (var post in Model.Posts)
     {
-        <li>@post.Name</li>
+        <li>@Html.ActionLink(post.Name, "Index", "Post", new {post.Id})</li>
     }
 </ul>
 
+<h3>Add Post</h3>
 @using (Html.BeginForm("AddPost", "Subreddit", FormMethod.Post))
 {
     <div>

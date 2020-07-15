@@ -8,5 +8,6 @@ namespace MVC.Models
         public Subreddit Subreddit { get; set; }
         public List<Post> Posts { get; set; }
         public Post NewPost { get; set; }
+        public int SelectedId { get; set; }
     }
 }
